@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernWindowsApp", "ModernWindowsApp\ModernWindowsApp.csproj", "{E929E048-62C0-4B7F-9682-2D7A9084A640}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Debug|ARM64.Build.0 = Debug|ARM64
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Debug|x64.ActiveCfg = Debug|x64
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Debug|x64.Build.0 = Debug|x64
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Debug|x64.Deploy.0 = Debug|x64
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Debug|x86.ActiveCfg = Debug|x86
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Debug|x86.Build.0 = Debug|x86
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Debug|x86.Deploy.0 = Debug|x86
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Release|ARM64.ActiveCfg = Release|ARM64
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Release|ARM64.Build.0 = Release|ARM64
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Release|ARM64.Deploy.0 = Release|ARM64
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Release|x64.ActiveCfg = Release|x64
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Release|x64.Build.0 = Release|x64
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Release|x64.Deploy.0 = Release|x64
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Release|x86.ActiveCfg = Release|x86
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Release|x86.Build.0 = Release|x86
+		{E929E048-62C0-4B7F-9682-2D7A9084A640}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9E5FF64D-3787-4CEE-B768-4C8A6F951E83}
+	EndGlobalSection
+EndGlobal
