@@ -53,8 +53,6 @@ namespace ModernWindowsApp
             {
                 // Register services
                 services.AddSingleton<MainWindowViewModel>();
-                // Register command-line arguments
-                services.AddSingleton(args);
             });
 
 
