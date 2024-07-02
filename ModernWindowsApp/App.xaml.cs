@@ -69,6 +69,14 @@ namespace ModernWindowsApp
 
                 window = new MainWindow();
                 window.ExtendsContentIntoTitleBar = true;
+
+                // todo: figure out how to set window height in WinUI 3
+                // Use 'this' rather than 'window' as variable if this is about the current window.
+                IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+                var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
+                var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
+                appWindow.Resize(new Windows.Graphics.SizeInt32 { Width = 480, Height = 800 });
+
                 window.Activate();
                 Log.Information("Activated main window");
             }
