@@ -1,51 +1,83 @@
-﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Microsoft.UI.Xaml.Shapes;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-
-// To learn more about WinUI, the WinUI project structure,
+﻿// To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace ModernWindowsApp
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
-    sealed public partial class App : Application
-    {
-        private Window startupWindow;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.UI.Xaml;
+    using ModernWindowsApp.Services.Concretes;
+    using Serilog;
+    using System;
 
-        /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
+    public partial class App : Application
+    {
+        private readonly IHost host;
+
         public App()
         {
             this.InitializeComponent();
+
+            // Catch exceptions that propagate upwards
+            AppDomain.CurrentDomain.UnhandledException += (sender, eventArgs) =>
+            {
+                Log.Fatal(eventArgs.ExceptionObject as Exception, "An unhandled exception occurred.");
+                Log.CloseAndFlush();
+            };
+
+            // Configure Serilog
+            Log.Logger = new LoggerConfiguration().WriteTo.File(
+                path: "log.txt",
+                outputTemplate: "{Timestamp} [{Level:u3}] {Message:lj} {Exception}{NewLine}",
+                restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Verbose,
+                levelSwitch: new Serilog.Core.LoggingLevelSwitch(Serilog.Events.LogEventLevel.Verbose),
+                rollingInterval: RollingInterval.Infinite
+            ).CreateLogger();
+
+            try
+            {
+                // Initialise the host
+                host = CreateHostBuilder(Environment.GetCommandLineArgs()).Build();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "The application terminated unexpectedly");
+                Log.CloseAndFlush();
+                throw;
+            }
         }
 
-        /// <summary>
-        /// Invoked when the application is launched.
-        /// </summary>
-        /// <param name="args">Details about the launch request and process.</param>
+        private static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args)
+            .UseSerilog()
+            .ConfigureServices((context, services) =>
+            {
+                // Register services
+                services.AddSingleton<LoggingService>();
+                // Register command-line arguments
+                services.AddSingleton(args);
+            });
+
+
+        private Window window;
+
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            startupWindow = new MainWindow();
-            startupWindow.ExtendsContentIntoTitleBar = true;
-            startupWindow.Activate();
+            try
+            {
+                host.Start();
+                Log.Information("Started host");
+
+                window = new MainWindow();
+                window.Activate();
+                Log.Information("Activated main window");
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "The application terminated unexpectedly");
+                Log.CloseAndFlush();
+                throw;
+            }
+
         }
     }
 }
