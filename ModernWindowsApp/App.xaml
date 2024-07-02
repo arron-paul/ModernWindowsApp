@@ -3,6 +3,7 @@
     x:Class="ModernWindowsApp.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:ModernWindowsApp.ViewModels"
     xmlns:local="using:ModernWindowsApp">
     <Application.Resources>
         <ResourceDictionary>
@@ -11,6 +12,7 @@
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
+            <vm:MainWindowViewModel x:Key="MainWindowViewModel" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

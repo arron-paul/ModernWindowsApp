@@ -6,7 +6,7 @@ namespace ModernWindowsApp
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.UI.Xaml;
-    using ModernWindowsApp.Services.Concretes;
+    using ModernWindowsApp.ViewModels;
     using Serilog;
     using System;
 
@@ -52,7 +52,7 @@ namespace ModernWindowsApp
             .ConfigureServices((context, services) =>
             {
                 // Register services
-                services.AddSingleton<LoggingService>();
+                services.AddSingleton<MainWindowViewModel>();
                 // Register command-line arguments
                 services.AddSingleton(args);
             });
