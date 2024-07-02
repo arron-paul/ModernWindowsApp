@@ -68,6 +68,7 @@ namespace ModernWindowsApp
                 Log.Information("Started host");
 
                 window = new MainWindow();
+                window.ExtendsContentIntoTitleBar = true;
                 window.Activate();
                 Log.Information("Activated main window");
             }
