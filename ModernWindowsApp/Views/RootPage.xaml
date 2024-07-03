@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="ModernWindowsApp.Views.RootPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ModernWindowsApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:ModernWindowsApp.Views"
+    xmlns:viewmodels="using:ModernWindowsApp.ViewModels"
+    d:DataContext="{d:DesignInstance Type=viewmodels:RootPageViewModel}"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="StartupPageTemplate">
+                <views:StartupPage />
+            </DataTemplate>
+            <DataTemplate x:Key="MainPageTemplate">
+                <views:MainPage />
+            </DataTemplate>
+            <local:ViewModelTemplateSelector x:Key="ViewModelTemplateSelector"
+                StartupPageTemplate="{StaticResource StartupPageTemplate}"
+                MainPageTemplate="{StaticResource MainPageTemplate}" />
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <ContentControl
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
+            Content="{Binding CurrentViewModel}"
+            ContentTemplateSelector="{StaticResource ViewModelTemplateSelector}" />
+    </Grid>
+</Page>

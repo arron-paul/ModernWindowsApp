@@ -6,6 +6,7 @@
     xmlns:local="using:ModernWindowsApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:v="using:ModernWindowsApp.Views"
     mc:Ignorable="d">
-    <Frame x:Name="MainFrame" />
+    <v:RootPage />
 </Window>

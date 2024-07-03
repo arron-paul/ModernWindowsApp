@@ -39,11 +39,19 @@ public partial class App : Application
                 .UseSerilog()
                 .ConfigureServices((context, services) =>
                 {
+                    // Register Services
+                    // ...
+
                     // Register ViewModels
+                    services.AddSingleton<RootPageViewModel>(provider => new(
+                        startupPageViewModel: provider.GetRequiredService<StartupPageViewModel>(),
+                        mainPageViewModel: provider.GetRequiredService<MainPageViewModel>()
+                    ));
                     services.AddSingleton<StartupPageViewModel>();
                     services.AddSingleton<MainPageViewModel>();
 
                     // Register Views
+                    services.AddSingleton<RootPage>();
                     services.AddSingleton<StartupPage>();
                     services.AddSingleton<MainPage>();
 
