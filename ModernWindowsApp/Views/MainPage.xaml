@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Window
-    x:Class="ModernWindowsApp.MainWindow"
+<Page
+    x:Class="ModernWindowsApp.Views.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ModernWindowsApp"
+    xmlns:local="using:ModernWindowsApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:media="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    mc:Ignorable="d">
-    <Grid DataContext="{StaticResource MainWindowViewModel}">
-
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <Grid.Resources>
             <media:AcrylicBrush x:Key="CustomAcrylicBrush" TintOpacity="0.5" TintColor="#FF0000FF" FallbackColor="#FF008000" />
         </Grid.Resources>
@@ -22,11 +22,12 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Rectangle Fill="{ThemeResource CustomAcrylicBrush}" />
+        <Rectangle Fill="{StaticResource CustomAcrylicBrush}" />
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <FontIcon Glyph="&#xE8BE;" FontSize="32" />
             <TextBlock VerticalAlignment="Center" FontFamily="Bold" Margin="10, 0, 0, 0">ModernWindowsApp</TextBlock>
+            <Button Content="Go Back" Click="OnGoBackButtonClick" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10, 0, 0, 0" />
         </StackPanel>
     </Grid>
-</Window>
+</Page>

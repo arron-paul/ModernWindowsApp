@@ -12,7 +12,6 @@
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
-            <vm:MainWindowViewModel x:Key="MainWindowViewModel" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
